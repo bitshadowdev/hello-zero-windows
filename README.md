@@ -50,10 +50,27 @@ ZERO_UPSTREAM_DB="postgresql://user:password@127.0.0.1/mydb"
 ZERO_AUTH_SECRET="secretkey"
 
 # Place to store sqlite replica file.
-ZERO_REPLICA_FILE="/tmp/zstart_replica.db"
+ZERO_REPLICA_FILE="sync-replica.db"
 
 # Where UI will connect to zero-cache.
 VITE_PUBLIC_SERVER=http://localhost:4848
+
+# Windows
+If you are using Windows without WSL, prefer PowerShell commands and scripts. A PoSH helper is available at docker/wait-for-pg.ps1 for waiting on the database to be ready.
+
+Example usage in PowerShell:
+
+```powershell
+# Start the Postgres image
+npm run dev:db-up
+
+# Wait for Postgres to be ready (host:port)
+.\docker\wait-for-pg.ps1 127.0.0.1:5430
+
+# Then continue with the zero cache
+npm run dev:zero-cache
+```
+
 ```
 
 ### Setup
